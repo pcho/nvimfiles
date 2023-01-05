@@ -48,6 +48,7 @@ require('packer').startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
     })
 
+    use 'christoomey/vim-tmux-navigator'
     use 'MunifTanjim/prettier.nvim'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
