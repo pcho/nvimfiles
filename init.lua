@@ -77,7 +77,7 @@ require('nightfox').setup({
   },
   palettes = {
     duskfox = {
-      bg1 = "#191726",
+      bg1 = "#13111C",
     },
   },
 })
@@ -152,6 +152,7 @@ vim.g.netrw_fastbrowse = 2
 vim.g.netrw_special_syntax = 1
 
 vim.keymap.set('n', '<leader>w', ':w!<cr>')
+vim.keymap.set('n', '<leader>q', ':q<cr>')
 vim.keymap.set('n', '<leader>e', ':e.<cr>')
 
 vim.keymap.set('n', '<leader>vr', ':e $MYVIMRC<cr>')
@@ -167,6 +168,18 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+vim.cmd([[
+function! CloseWindowOrKillBuffer()
+    let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+    if number_of_windows_to_this_buffer > 1
+        wincmd c
+    else
+        bdelete
+    endif
+endfunction
+]])
+
+vim.keymap.set('n', 'Q', ':call CloseWindowOrKillBuffer()<CR>', { silent = true })
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -225,7 +238,7 @@ end, { desc = '[/] Fuzzily search in current buffer]' })
 vim.keymap.set('n', '<c-p>', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>g', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- [[ Configure Treesitter ]]
