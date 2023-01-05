@@ -110,34 +110,25 @@ null_ls.setup({
   end,
 })
 
-local status, null_ls = pcall(require, "null-ls")
-if (not status) then return end
+local prettier = require("prettier")
 
-null_ls.setup({
-  sources = {
-    null_ls.builtins.diagnostics.eslint_d.with({
-      diagnostics_format = '[eslint] #{m}\n(#{c})'
-    }),
-    null_ls.builtins.diagnostics.fish
-  }
-})
-
-local status, prettier = pcall(require, "prettier")
-if (not status) then return end
-
-prettier.setup {
-  bin = 'prettierd',
+prettier.setup({
+  bin = 'prettierd', -- or `'prettierd'` (v0.22+)
   filetypes = {
     "css",
+    "graphql",
+    "html",
     "javascript",
     "javascriptreact",
+    "json",
+    "less",
+    "markdown",
+    "scss",
     "typescript",
     "typescriptreact",
-    "json",
-    "scss",
-    "less"
-  }
-}
+    "yaml",
+  },
+})
 
 vim.o.termguicolors = true
 
