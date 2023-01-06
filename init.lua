@@ -5,6 +5,7 @@ require("pcho.utils")
 require("pcho.packer")
 
 require("pcho.plugins.telescope")
+require("pcho.plugins.treesitter")
 require("pcho.plugins.lualine")
 require("pcho.plugins.gitsigns")
 
@@ -61,14 +62,6 @@ prettier.setup({
         "yaml",
     },
 })
-
-require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'go', 'lua', 'json', 'javascript', 'toml', 'yaml', 'python', 'rust', 'typescript', 'help', 'vim',
-        'bash', 'html', 'css' },
-
-    highlight = { enable = true },
-    indent = { enable = true, disable = { 'python' } },
-}
 
 local on_attach = function(_, bufnr)
     local nmap = function(keys, func, desc)
