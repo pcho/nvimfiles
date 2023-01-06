@@ -41,17 +41,16 @@ require('packer').startup(function(use)
     }
 
     use({
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-        require("null-ls").setup()
-    end,
-    requires = { "nvim-lua/plenary.nvim" },
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            require("null-ls").setup()
+        end,
+        requires = { "nvim-lua/plenary.nvim" },
     })
 
     use 'christoomey/vim-tmux-navigator'
     use 'MunifTanjim/prettier.nvim'
     use 'tpope/vim-fugitive'
-    use 'tpope/vim-rhubarb'
     use 'lewis6991/gitsigns.nvim'
     use 'EdenEast/nightfox.nvim'
     use 'nvim-lualine/lualine.nvim'
@@ -85,50 +84,50 @@ local event = "BufWritePre" -- or "BufWritePost"
 local async = event == "BufWritePost"
 
 null_ls.setup({
-  on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-      vim.keymap.set("n", "<Leader>f", function()
-        vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-      end, { buffer = bufnr, desc = "[lsp] format" })
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.keymap.set("n", "<Leader>f", function()
+                vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+            end, { buffer = bufnr, desc = "[lsp] format" })
 
-      -- format on save
-      vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
-      vim.api.nvim_create_autocmd(event, {
-        buffer = bufnr,
-        group = group,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr, async = async })
-        end,
-        desc = "[lsp] format on save",
-      })
-    end
+            -- format on save
+            vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+            vim.api.nvim_create_autocmd(event, {
+                buffer = bufnr,
+                group = group,
+                callback = function()
+                    vim.lsp.buf.format({ bufnr = bufnr, async = async })
+                end,
+                desc = "[lsp] format on save",
+            })
+        end
 
-    if client.supports_method("textDocument/rangeFormatting") then
-      vim.keymap.set("x", "<Leader>f", function()
-        vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-      end, { buffer = bufnr, desc = "[lsp] format" })
-    end
-  end,
+        if client.supports_method("textDocument/rangeFormatting") then
+            vim.keymap.set("x", "<Leader>f", function()
+                vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+            end, { buffer = bufnr, desc = "[lsp] format" })
+        end
+    end,
 })
 
 local prettier = require("prettier")
 
 prettier.setup({
-  bin = 'prettierd', -- or `'prettierd'` (v0.22+)
-  filetypes = {
-    "css",
-    "graphql",
-    "html",
-    "javascript",
-    "javascriptreact",
-    "json",
-    "less",
-    "markdown",
-    "scss",
-    "typescript",
-    "typescriptreact",
-    "yaml",
-  },
+    bin = 'prettierd', -- or `'prettierd'` (v0.22+)
+    filetypes = {
+        "css",
+        "graphql",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "less",
+        "markdown",
+        "scss",
+        "typescript",
+        "typescriptreact",
+        "yaml",
+    },
 })
 
 vim.o.termguicolors = true
@@ -211,7 +210,6 @@ vim.g.netrw_fastbrowse = 2
 vim.g.netrw_special_syntax = 1
 
 vim.keymap.set('n', '<leader>w', ':w!<cr>')
-vim.keymap.set('n', '<leader>q', ':q<cr>')
 vim.keymap.set('n', '<leader>e', ':e.<cr>')
 
 vim.keymap.set('n', '<leader>vr', ':e $MYVIMRC<cr>')
@@ -256,6 +254,14 @@ require('lualine').setup {
         theme = 'duskfox',
         component_separators = '',
         section_separators = '',
+    },
+    sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' }
     },
 }
 
@@ -304,7 +310,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim', 'bash' },
+    ensure_installed = { 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim', 'bash', 'html', 'css' },
 
     highlight = { enable = true },
     indent = { enable = true, disable = { 'python' } },
@@ -367,7 +373,7 @@ require('nvim-treesitter.configs').setup {
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>ee', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>qq', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 local on_attach = function(_, bufnr)
     local nmap = function(keys, func, desc)
@@ -407,6 +413,7 @@ local on_attach = function(_, bufnr)
 end
 
 local servers = {
+    eslint = {},
     html = {},
     tailwindcss = {},
     bashls = {},
