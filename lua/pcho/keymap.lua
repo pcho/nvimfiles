@@ -7,8 +7,8 @@ vim.keymap.set('n', '<leader>vr', ':e $MYVIMRC<cr>')
 vim.keymap.set('n', '<leader>vs', ':e ~/.dotfiles/.zsh<cr>')
 vim.keymap.set('n', '<leader>bin', ':e ~/.bin/<cr>')
 
-vim.keymap.set('n', '<leader>v', ':vsplit<cr>')
-vim.keymap.set('n', '<leader>o', ':split<cr>')
+vim.keymap.set('n', '<leader>v', vim.cmd.vsplit)
+vim.keymap.set('n', '<leader>o', vim.cmd.split)
 
 vim.keymap.set('n', '<leader>x', ':let @/ = ""<cr>', { silent = true })
 
