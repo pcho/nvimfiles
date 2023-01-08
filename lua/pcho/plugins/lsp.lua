@@ -84,7 +84,10 @@ local servers = {
 
     sumneko_lua = {
         Lua = {
-            workspace = { checkThirdParty = false },
+            workspace = {
+                checkThirdParty = false,
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
             telemetry = { enable = false },
             diagnostic = {
                 globals = { 'vim' }
@@ -128,9 +131,6 @@ cmp.setup {
         end,
     },
     mapping = cmp.mapping.preset.insert {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
