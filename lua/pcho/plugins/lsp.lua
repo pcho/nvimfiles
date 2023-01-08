@@ -3,8 +3,14 @@ local null_ls = require("null-ls")
 local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
 local event = "BufWritePre"
 local async = event == "BufWritePost"
+local builtins = null_ls.builtins
 
 null_ls.setup({
+    sources = {
+        builtins.formatting.shfmt,
+        builtins.formatting.shellharden,
+        builtins.formatting.prettierd,
+    },
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
             vim.keymap.set("n", "<Leader>f", function()
@@ -28,26 +34,6 @@ null_ls.setup({
             end, { buffer = bufnr, desc = "[lsp] format" })
         end
     end,
-})
-
-local prettier = require("prettier")
-
-prettier.setup({
-    bin = 'prettierd',
-    filetypes = {
-        "css",
-        "graphql",
-        "html",
-        "javascript",
-        "javascriptreact",
-        "json",
-        "less",
-        "markdown",
-        "scss",
-        "typescript",
-        "typescriptreact",
-        "yaml",
-    },
 })
 
 local on_attach = function(_, bufnr)
@@ -77,6 +63,7 @@ end
 
 local servers = {
     eslint = {},
+    jsonls = {},
     html = {},
     tailwindcss = {},
     bashls = {},
@@ -131,6 +118,8 @@ cmp.setup {
         end,
     },
     mapping = cmp.mapping.preset.insert {
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
@@ -156,6 +145,7 @@ cmp.setup {
     },
     sources = {
         { name = 'nvim_lsp' },
+        { name = 'path' },
         { name = 'luasnip' },
     },
 }

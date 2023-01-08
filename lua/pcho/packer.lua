@@ -22,7 +22,12 @@ require('packer').startup(function(use)
 
     use {
         'hrsh7th/nvim-cmp',
-        requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+        requires = {
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-nvim-lsp',
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip'
+        },
     }
 
     use {
@@ -51,7 +56,6 @@ require('packer').startup(function(use)
     })
 
     use 'christoomey/vim-tmux-navigator'
-    use 'MunifTanjim/prettier.nvim'
     use 'tpope/vim-fugitive'
     use 'lewis6991/gitsigns.nvim'
     use 'EdenEast/nightfox.nvim'
