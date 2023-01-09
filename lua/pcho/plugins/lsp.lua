@@ -63,6 +63,7 @@ end
 
 local servers = {
     eslint = {},
+    cssls = {},
     jsonls = {},
     html = {},
     tailwindcss = {},

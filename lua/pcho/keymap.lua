@@ -1,4 +1,5 @@
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 
 vim.keymap.set('n', '<leader>w', ':w!<cr>')
 vim.keymap.set('n', '<leader>e', ':e.<cr>')
