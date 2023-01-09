@@ -1,5 +1,5 @@
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+vim.keymap.set('n', '<leader>s', vim.cmd.UndotreeToggle)
 
 vim.keymap.set('n', '<leader>w', ':w!<cr>')
 vim.keymap.set('n', '<leader>e', ':e.<cr>')
@@ -10,8 +10,6 @@ vim.keymap.set('n', '<leader>bin', ':e ~/.bin/<cr>')
 
 vim.keymap.set('n', '<leader>v', vim.cmd.vsplit)
 vim.keymap.set('n', '<leader>o', vim.cmd.split)
-
-vim.keymap.set('n', '<leader>s', vim.cmd.Mason)
 
 vim.keymap.set('n', '<leader>x', ':let @/ = ""<cr>', { silent = true })
 
