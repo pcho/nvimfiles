@@ -11,6 +11,8 @@ vim.keymap.set('n', '<leader>bin', ':e ~/.bin/<cr>')
 vim.keymap.set('n', '<leader>v', vim.cmd.vsplit)
 vim.keymap.set('n', '<leader>o', vim.cmd.split)
 
+vim.keymap.set('n', '<leader>W', ':set wrap!<cr>')
+
 vim.keymap.set('n', '<leader>x', ':let @/ = ""<cr>', { silent = true })
 
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
