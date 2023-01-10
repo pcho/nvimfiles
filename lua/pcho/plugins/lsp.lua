@@ -1,4 +1,5 @@
 local null_ls = require("null-ls")
+local lspkind = require("lspkind")
 
 local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
 local event = "BufWritePre"
@@ -66,7 +67,15 @@ local servers = {
     cssls = {},
     jsonls = {},
     html = {},
-    tailwindcss = {},
+    tailwindcss = {
+        tailwindCSS = {
+            experimental = {
+                classRegex = {
+                    { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                },
+            },
+        },
+    },
     bashls = {},
     tsserver = {},
 
@@ -149,4 +158,16 @@ cmp.setup {
         { name = 'path' },
         { name = 'luasnip' },
     },
+    formatting = {
+      fields = { "abbr", "kind", "menu" },
+      format = lspkind.cmp_format({
+          mode = "symbol_text",
+          preset = "codicons",
+          menu = {
+              path = "[P]",
+              nvim_lsp = "[L]",
+              luasnip = "[S]",
+          },
+      }),
+    }
 }
