@@ -35,9 +35,6 @@ require('packer').startup(function(use)
         run = function()
             pcall(require('nvim-treesitter.install').update { with_sync = true })
         end,
-        requires = {
-            'windwp/nvim-ts-autotag'
-        }
     }
 
     use {
@@ -48,6 +45,11 @@ require('packer').startup(function(use)
     use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
+    }
+
+    use {
+        "windwp/nvim-ts-autotag",
+        config = function() require("nvim-ts-autotag").setup {} end
     }
 
     use({
@@ -189,38 +191,38 @@ local ignore_buftype = { "quickfix", "nofile", "help" }
 local ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" }
 
 local function run()
-  if vim.tbl_contains(ignore_buftype, vim.bo.buftype) then
-    return
-  end
-
-  if vim.tbl_contains(ignore_filetype, vim.bo.filetype) then
-    vim.cmd[[normal! gg]]
-    return
-  end
-
-  if vim.fn.line(".") > 1 then
-    return
-  end
-
-  local last_line = vim.fn.line([['"]])
-  local buff_last_line = vim.fn.line("$")
-
-  if last_line > 0 and last_line <= buff_last_line then
-    local win_last_line = vim.fn.line("w$")
-    local win_first_line = vim.fn.line("w0")
-    if win_last_line == buff_last_line then
-      vim.cmd[[normal! g`"]]
-    elseif buff_last_line - last_line > ((win_last_line - win_first_line) / 2) - 1 then
-      vim.cmd[[normal! g`"zz]]
-    else
-      vim.cmd[[normal! G'"<c-e>]]
+    if vim.tbl_contains(ignore_buftype, vim.bo.buftype) then
+        return
     end
-  end
+
+    if vim.tbl_contains(ignore_filetype, vim.bo.filetype) then
+        vim.cmd [[normal! gg]]
+        return
+    end
+
+    if vim.fn.line(".") > 1 then
+        return
+    end
+
+    local last_line = vim.fn.line([['"]])
+    local buff_last_line = vim.fn.line("$")
+
+    if last_line > 0 and last_line <= buff_last_line then
+        local win_last_line = vim.fn.line("w$")
+        local win_first_line = vim.fn.line("w0")
+        if win_last_line == buff_last_line then
+            vim.cmd [[normal! g`"]]
+        elseif buff_last_line - last_line > ((win_last_line - win_first_line) / 2) - 1 then
+            vim.cmd [[normal! g`"zz]]
+        else
+            vim.cmd [[normal! G'"<c-e>]]
+        end
+    end
 end
 
-vim.api.nvim_create_autocmd({'BufWinEnter', 'FileType'}, {
-  group    = vim.api.nvim_create_augroup('nvim-lastplace', {}),
-  callback = run
+vim.api.nvim_create_autocmd({ 'BufWinEnter', 'FileType' }, {
+    group    = vim.api.nvim_create_augroup('nvim-lastplace', {}),
+    callback = run
 })
 
 require('lualine').setup {
@@ -229,6 +231,9 @@ require('lualine').setup {
         theme = 'duskfox',
         component_separators = '',
         section_separators = '',
+        disabled_filetypes = {
+            statusline = { "undotree", "diff" },
+        },
     },
     sections = {
         lualine_a = { 'mode' },
@@ -238,6 +243,7 @@ require('lualine').setup {
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
     },
+    extensions = { 'quickfix' }
 }
 
 require('Comment').setup()
