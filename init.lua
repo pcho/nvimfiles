@@ -289,6 +289,7 @@ local builtins = null_ls.builtins
 null_ls.setup({
     sources = {
         builtins.formatting.shfmt,
+        builtins.formatting.rustfmt,
         builtins.formatting.shellharden,
         builtins.formatting.prettierd,
     },
@@ -343,6 +344,7 @@ local on_attach = function(_, bufnr)
 end
 
 local servers = {
+    rust_analyzer = {},
     eslint = {},
     cssls = {},
     jsonls = {},
@@ -363,7 +365,7 @@ local servers = {
         Lua = {
             workspace = {
                 checkThirdParty = false,
-                library = vim.api.nvim_get_runtime_file("", true),
+                -- library = vim.api.nvim_get_runtime_file("", true),
             },
             telemetry = { enable = false },
             diagnostic = {
@@ -451,6 +453,27 @@ cmp.setup {
         }),
     }
 }
+
+local function create_augroups(augroups)
+    for k, v in pairs(augroups) do
+        vim.api.nvim_command("augroup " .. k)
+        vim.api.nvim_command("autocmd!")
+        for _, def in ipairs(v) do
+            vim.api.nvim_command(
+                table.concat(vim.tbl_flatten({ "autocmd", def }), " ")
+            )
+        end
+        vim.api.nvim_command("augroup END")
+    end
+end
+
+local augroups = {
+    eslint_fix_all = {
+        { "BufWritePre", "*.ts,*.js,*.tsx", "EslintFixAll" },
+    },
+}
+
+create_augroups(augroups)
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 vim.keymap.set('n', '<leader>s', vim.cmd.UndotreeToggle)
