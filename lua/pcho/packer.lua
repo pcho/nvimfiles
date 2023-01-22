@@ -62,6 +62,7 @@ require('packer').startup(function(use)
 
     use 'onsails/lspkind.nvim'
     use 'mbbill/undotree'
+    use 'lukas-reineke/indent-blankline.nvim'
     use 'christoomey/vim-tmux-navigator'
     use 'tpope/vim-fugitive'
     use 'lewis6991/gitsigns.nvim'

@@ -11,3 +11,4 @@ require('pcho.plugins.telescope')
 require('pcho.plugins.lsp')
 
 require('Comment').setup()
+require('indent_blankline').setup()
