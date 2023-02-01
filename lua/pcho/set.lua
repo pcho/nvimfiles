@@ -50,8 +50,8 @@ vim.o.undofile = true
 vim.o.updatetime = 50
 vim.wo.signcolumn = 'yes'
 
-vim.g.mapleader = '\\'
-vim.g.maplocalleader = '\\\"'
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 vim.g.netrw_banner = 0
 vim.g.netrw_dirhistmax = 0

@@ -78,7 +78,11 @@ local servers = {
             },
         },
     },
-    bashls = {},
+    bashls = {
+        bashIde = {
+            includeAllWorkspaceSymbols = true,
+        }
+    },
     tsserver = {},
 
     sumneko_lua = {
