@@ -9,6 +9,7 @@ require('pcho.plugins.lualine')
 require('pcho.plugins.treesitter')
 require('pcho.plugins.telescope')
 require('pcho.plugins.lsp')
+require('pcho.plugins.fugitive')
 
 require('Comment').setup()
 require('indent_blankline').setup()
