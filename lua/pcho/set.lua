@@ -57,4 +57,3 @@ vim.g.netrw_banner = 0
 vim.g.netrw_dirhistmax = 0
 vim.g.netrw_fastbrowse = 2
 vim.g.netrw_special_syntax = 1
-
