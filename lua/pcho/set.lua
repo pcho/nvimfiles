@@ -3,8 +3,8 @@ vim.o.splitbelow = true
 
 vim.o.termguicolors = true
 
-vim.o.mouse = 'a'
-vim.o.fileformats = 'unix,mac,dos'
+vim.o.mouse = "a"
+vim.o.fileformats = "unix,mac,dos"
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.autowrite = true
@@ -16,15 +16,15 @@ vim.o.wrap = false
 vim.o.cmdheight = 2
 vim.o.showcmd = false
 vim.o.showmatch = true
-vim.o.shortmess = 'acI'
+vim.o.shortmess = "acI"
 
-vim.o.complete = '.,w,b,u,i,]'
-vim.o.completeopt = 'longest,menuone,noselect'
+vim.o.complete = ".,w,b,u,i,]"
+vim.o.completeopt = "longest,menuone,noselect"
 
-vim.o.wildmode = 'list:longest,full'
-vim.o.wildignore = '*/venv/*'
-vim.o.wildignore = '*/resources/*'
-vim.o.wildignore = '*/undo/*'
+vim.o.wildmode = "list:longest,full"
+vim.o.wildignore = "*/venv/*"
+vim.o.wildignore = "*/resources/*"
+vim.o.wildignore = "*/undo/*"
 
 vim.o.ttimeout = true
 vim.o.ttimeoutlen = 1
@@ -48,10 +48,10 @@ vim.o.swapfile = false
 vim.o.undofile = true
 
 vim.o.updatetime = 50
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.g.netrw_banner = 0
 vim.g.netrw_dirhistmax = 0

@@ -1,3 +1,4 @@
 return {
-    'andymass/vim-matchup', opts = {},
+    "andymass/vim-matchup",
+    opts = {},
 }

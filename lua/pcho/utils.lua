@@ -9,15 +9,15 @@ function! CloseWindowOrKillBuffer()
 endfunction
 ]])
 
-vim.keymap.set('n', 'Q', ':call CloseWindowOrKillBuffer()<CR>', { silent = true })
+vim.keymap.set("n", "Q", ":call CloseWindowOrKillBuffer()<CR>", { silent = true })
 
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank()
     end,
     group = highlight_group,
-    pattern = '*',
+    pattern = "*",
 })
 
 -- https://github.com/neovim/neovim/issues/16339#issuecomment-1348133829
@@ -30,7 +30,7 @@ local function run()
     end
 
     if vim.tbl_contains(ignore_filetype, vim.bo.filetype) then
-        vim.cmd [[normal! gg]]
+        vim.cmd([[normal! gg]])
         return
     end
 
@@ -45,16 +45,16 @@ local function run()
         local win_last_line = vim.fn.line("w$")
         local win_first_line = vim.fn.line("w0")
         if win_last_line == buff_last_line then
-            vim.cmd [[normal! g`"]]
+            vim.cmd([[normal! g`"]])
         elseif buff_last_line - last_line > ((win_last_line - win_first_line) / 2) - 1 then
-            vim.cmd [[normal! g`"zz]]
+            vim.cmd([[normal! g`"zz]])
         else
-            vim.cmd [[normal! G'"<c-e>]]
+            vim.cmd([[normal! G'"<c-e>]])
         end
     end
 end
 
-vim.api.nvim_create_autocmd({ 'BufWinEnter', 'FileType' }, {
-    group    = vim.api.nvim_create_augroup('nvim-lastplace', {}),
-    callback = run
+vim.api.nvim_create_autocmd({ "BufWinEnter", "FileType" }, {
+    group = vim.api.nvim_create_augroup("nvim-lastplace", {}),
+    callback = run,
 })
