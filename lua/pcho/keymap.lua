@@ -1,6 +1,7 @@
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 
 vim.keymap.set("n", "<leader>w", ":w!<cr>")
+vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeToggle, { silent = true })
 
 vim.keymap.set("n", "<leader>vr", ":e $MYVIMRC<cr>")
 vim.keymap.set("n", "<leader>vv", ":lcd %:p:h<cr>")

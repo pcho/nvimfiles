@@ -13,6 +13,7 @@ null_ls.setup({
         builtins.formatting.rustfmt,
         builtins.formatting.shellharden,
         builtins.formatting.prettierd,
+        builtins.diagnostics.shellcheck,
     },
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then

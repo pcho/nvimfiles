@@ -34,3 +34,4 @@ require("lazy").setup("custom.plugins", {
 require("pcho.utils")
 require("pcho.keymap")
 require("pcho.plugins.lsp")
+require("pcho.plugins.telescope")
