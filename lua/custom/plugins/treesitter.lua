@@ -1,6 +1,6 @@
 return {
-	{ "windwp/nvim-autopairs",  opts = {} },
-	{ "windwp/nvim-ts-autotag", opts = {} },
+	"windwp/nvim-ts-autotag",
+	{ "windwp/nvim-autopairs", opts = {} },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
