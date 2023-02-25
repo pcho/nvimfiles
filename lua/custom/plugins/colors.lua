@@ -1,8 +1,8 @@
 return {
-    'EdenEast/nightfox.nvim',
+    "EdenEast/nightfox.nvim",
     priority = 1000,
     config = function()
-        vim.cmd.colorscheme 'duskfox'
+        vim.cmd.colorscheme "duskfox"
     end,
     opts = {
         options = {
@@ -14,5 +14,5 @@ return {
                 bg1 = "#13111C",
             },
         },
-    }
+    },
 }

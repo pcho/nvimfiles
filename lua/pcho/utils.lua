@@ -1,4 +1,22 @@
-vim.cmd([[
+local function create_augroups(augroups)
+    for k, v in pairs(augroups) do
+        vim.api.nvim_command("augroup " .. k)
+        vim.api.nvim_command "autocmd!"
+        for _, def in ipairs(v) do
+            vim.api.nvim_command(table.concat(vim.tbl_flatten { "autocmd", def }, " "))
+        end
+        vim.api.nvim_command "augroup END"
+    end
+end
+
+local augroups = {
+    eslint_fix_all = {
+        { "BufWritePre", "*.ts,*.js,*.tsx", "EslintFixAll" },
+    },
+}
+
+create_augroups(augroups)
+vim.cmd [[
 function! CloseWindowOrKillBuffer()
     let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
     if number_of_windows_to_this_buffer > 1
@@ -7,7 +25,7 @@ function! CloseWindowOrKillBuffer()
         bdelete
     endif
 endfunction
-]])
+]]
 
 vim.keymap.set("n", "Q", ":call CloseWindowOrKillBuffer()<CR>", { silent = true })
 
@@ -30,26 +48,26 @@ local function run()
     end
 
     if vim.tbl_contains(ignore_filetype, vim.bo.filetype) then
-        vim.cmd([[normal! gg]])
+        vim.cmd [[normal! gg]]
         return
     end
 
-    if vim.fn.line(".") > 1 then
+    if vim.fn.line "." > 1 then
         return
     end
 
-    local last_line = vim.fn.line([['"]])
-    local buff_last_line = vim.fn.line("$")
+    local last_line = vim.fn.line [['"]]
+    local buff_last_line = vim.fn.line "$"
 
     if last_line > 0 and last_line <= buff_last_line then
-        local win_last_line = vim.fn.line("w$")
-        local win_first_line = vim.fn.line("w0")
+        local win_last_line = vim.fn.line "w$"
+        local win_first_line = vim.fn.line "w0"
         if win_last_line == buff_last_line then
-            vim.cmd([[normal! g`"]])
+            vim.cmd [[normal! g`"]]
         elseif buff_last_line - last_line > ((win_last_line - win_first_line) / 2) - 1 then
-            vim.cmd([[normal! g`"zz]])
+            vim.cmd [[normal! g`"zz]]
         else
-            vim.cmd([[normal! G'"<c-e>]])
+            vim.cmd [[normal! G'"<c-e>]]
         end
     end
 end
