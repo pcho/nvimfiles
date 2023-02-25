@@ -123,6 +123,29 @@ mason_lspconfig.setup_handlers({
     end,
 })
 
+require("mason-tool-installer").setup({
+    ensure_installed = {
+        "bash-language-server",
+        "tailwindcss-language-server",
+        "typescript-language-server",
+        "prisma-language-server",
+        "lua-language-server",
+        "html-lsp",
+        "css-lsp",
+        "eslint-lsp",
+        "json-lsp",
+        "css-lsp",
+        "rustfmt",
+        "yamlfmt",
+        "stylua",
+        "shellcheck",
+        "rust-analyzer",
+    },
+    auto_update = false,
+    run_on_start = true,
+    start_delay = 3000,
+})
+
 require("fidget").setup()
 
 local cmp = require("cmp")
@@ -162,7 +185,10 @@ cmp.setup({
     }),
     sources = {
         { name = "nvim_lsp" },
+        { name = "nvim_lsp_signature_help" },
+        { name = "nvim_lsp_document_symbol" },
         { name = "path" },
+        { name = "treesitter" },
         { name = "luasnip" },
     },
     formatting = {
@@ -177,6 +203,42 @@ cmp.setup({
             },
         }),
     },
+})
+
+cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = "nvim_lsp_document_symbol" },
+        { name = "cmdline_history" },
+        { name = "buffer" },
+    }, {}),
+})
+
+cmp.setup.cmdline(":", {
+    mapping = {
+        ["<c-p>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end, { "c" }),
+
+        ["<c-n>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end, { "c" }),
+        ["<C-y>"] = {
+            c = cmp.mapping.confirm({ select = false }),
+        },
+        ["<C-q>"] = {
+            c = cmp.mapping.abort(),
+        },
+    },
+    sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" }, { { name = "cmdline_history" } } }),
 })
 
 local function create_augroups(augroups)

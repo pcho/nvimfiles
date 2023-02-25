@@ -1,5 +1,6 @@
 return {
 	"windwp/nvim-ts-autotag",
+	"JoosepAlviste/nvim-ts-context-commentstring",
 	{ "windwp/nvim-autopairs", opts = {} },
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -7,8 +8,12 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			"nvim-treesitter/nvim-treesitter-context",
 		},
 		opts = {
+			context_commentstring = {
+				enable = true,
+			},
 			matchup = {
 				enable = true,
 			},

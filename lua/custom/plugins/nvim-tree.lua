@@ -6,6 +6,7 @@ return {
 	opts = {
 		update_focused_file = { enable = true },
 		hijack_cursor = true,
+		reload_on_bufenter = true,
 		view = {
 			cursorline = false,
 			mappings = {
@@ -18,6 +19,22 @@ return {
 					{ key = "c",          action = "create" },
 					{ key = "D",          action = "remove" },
 					{ key = "R",          action = "rename" },
+				},
+			},
+		},
+		renderer = {
+			highlight_git = true,
+			icons = {
+				glyphs = {
+					git = {
+						unstaged = "✗",
+						staged = "✓",
+						unmerged = "",
+						renamed = "r",
+						untracked = "u",
+						deleted = "d",
+						ignored = "i",
+					},
 				},
 			},
 		},
