@@ -1,4 +1,3 @@
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 vim.keymap.set("n", "<leader>w", ":w!<cr>")
 
 vim.keymap.set("n", "<leader>vr", ":e $MYVIMRC<cr>")

@@ -30,6 +30,7 @@ vim.o.wildignore = "*/undo/*"
 
 vim.o.ttimeout = true
 vim.o.ttimeoutlen = 1
+vim.o.timeoutlen = 250
 vim.o.scrolloff = 999
 vim.o.scrolljump = -5
 
