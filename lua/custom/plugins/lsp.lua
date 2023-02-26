@@ -19,7 +19,6 @@ return {
                 end
 
                 nmap("<leader>rn", vim.lsp.buf.rename, "")
-                nmap("<leader>ca", vim.lsp.buf.code_action, "")
 
                 nmap("gd", vim.lsp.buf.definition, "")
                 nmap("gr", require("telescope.builtin").lsp_references, "")
@@ -99,6 +98,8 @@ return {
                     "typescript-language-server",
                     "prisma-language-server",
                     "lua-language-server",
+                    "markdownlint",
+                    "beautysh",
                     "html-lsp",
                     "css-lsp",
                     "eslint-lsp",
@@ -133,16 +134,28 @@ return {
 
             null_ls.setup {
                 sources = {
-                    builtins.formatting.shfmt,
+                    builtins.formatting.shfmt.with {
+                        extra_args = { "-i", "2", "-ci" },
+                    },
                     builtins.formatting.stylua,
                     builtins.formatting.rustfmt,
                     builtins.formatting.shellharden,
+                    builtins.formatting.beautysh.with {
+                        disabled_filetypes = { "sh", "bash" },
+                    },
                     builtins.formatting.prettierd,
+                    builtins.formatting.trim_whitespace,
+                    builtins.formatting.trim_newlines,
+                    builtins.diagnostics.markdownlint,
+                    builtins.diagnostics.eslint_d,
                     builtins.diagnostics.shellcheck,
+                    builtins.code_actions.shellcheck,
+                    builtins.code_actions.eslint_d,
+                    builtins.code_actions.gitsigns,
                 },
                 on_attach = function(client, bufnr)
                     if client.supports_method "textDocument/formatting" then
-                        vim.keymap.set("n", "<Leader>f", function()
+                        vim.keymap.set("n", "<Leader>ff", function()
                             vim.lsp.buf.format { bufnr = vim.api.nvim_get_current_buf() }
                         end, { buffer = bufnr, desc = "[lsp] format" })
 
@@ -158,7 +171,7 @@ return {
                     end
 
                     if client.supports_method "textDocument/rangeFormatting" then
-                        vim.keymap.set("x", "<Leader>f", function()
+                        vim.keymap.set("x", "<Leader>ff", function()
                             vim.lsp.buf.format { bufnr = vim.api.nvim_get_current_buf() }
                         end, { buffer = bufnr, desc = "[lsp] format" })
                     end

@@ -31,5 +31,5 @@ require("lazy").setup("custom.plugins", {
     },
 })
 
-require "pcho.utils"
+require "pcho.autocmd"
 require "pcho.keymap"

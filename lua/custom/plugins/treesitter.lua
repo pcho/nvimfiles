@@ -26,6 +26,7 @@ return {
                 "toml",
                 "yaml",
                 "typescript",
+                "markdown",
                 "help",
                 "vim",
                 "bash",
