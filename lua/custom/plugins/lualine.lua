@@ -2,12 +2,12 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = {
         options = {
-            icons_enabled = false,
+            icons_enabled = true,
             theme = "duskfox",
             component_separators = "",
-            section_separators = "",
+            section_separators = { left = "", right = "" },
             disabled_filetypes = {
-                statusline = { "undotree", "diff", "NvimTree" },
+                statusline = { "undotree", "diff" },
             },
         },
         sections = {
@@ -18,6 +18,6 @@ return {
             lualine_y = { "progress" },
             lualine_z = { "location" },
         },
-        extensions = { "quickfix" },
+        extensions = { "quickfix", "fugitive", "nvim-tree", "man" },
     },
 }
