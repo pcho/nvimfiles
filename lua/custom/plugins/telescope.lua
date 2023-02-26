@@ -1,7 +1,6 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        version = "*",
         dependencies = {
             "nvim-lua/plenary.nvim",
             {
@@ -14,6 +13,21 @@ return {
         config = function()
             require("telescope").setup {
                 defaults = {
+                    layout_strategy = "horizontal",
+                    layout_config = {
+                        width = 0.9,
+                        height = 0.9,
+                        horizontal = {
+                            preview_width = 0.6,
+                        },
+                    },
+                    file_ignore_patterns = {
+                        "node_modules",
+                        ".zsh_sessions",
+                        ".zcompcache/",
+                        ".next",
+                        ".git",
+                    },
                     mappings = {
                         i = {
                             ["<esc>"] = require("telescope.actions").close,
@@ -40,13 +54,16 @@ return {
             pcall(require("telescope").load_extension, "fzf")
             pcall(require("telescope").load_extension, "ui-select")
 
-            vim.keymap.set("n", "<leader>d", builtin.oldfiles, {})
-            vim.keymap.set("n", "<leader>b", builtin.buffers, {})
-            vim.keymap.set("n", "<leader>q", builtin.diagnostics, {})
-            vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", {})
             vim.keymap.set("n", "<c-p>", builtin.find_files, {})
+
+            vim.keymap.set("n", "<leader>d", builtin.oldfiles, {})
+            vim.keymap.set("n", "<leader>m", builtin.man_pages, {})
+            vim.keymap.set("n", "<leader>b", builtin.buffers, {})
             vim.keymap.set("n", "<leader>h", builtin.help_tags, {})
             vim.keymap.set("n", "<leader>g", builtin.live_grep, {})
+
+            vim.keymap.set("n", "<leader>q", builtin.diagnostics, {})
+            vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", {})
         end,
     },
     {

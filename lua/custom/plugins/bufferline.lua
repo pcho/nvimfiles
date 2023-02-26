@@ -17,7 +17,7 @@ return {
             },
             offsets = {
                 { filetype = "NvimTree", text = "File Explorer", text_align = "center" },
-                { filetype = "undotree", text = "Undo Tree", text_align = "center" },
+                { filetype = "undotree", text = "Undo Tree",     text_align = "center" },
             },
         },
         highlights = {
