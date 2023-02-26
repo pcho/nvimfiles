@@ -21,6 +21,8 @@ vim.o.shortmess = "acI"
 vim.o.complete = ".,w,b,u,i,]"
 vim.o.completeopt = "longest,menuone,noselect"
 
+vim.o.pumheight = 15
+
 vim.o.wildmode = "list:longest,full"
 vim.o.wildignore = "*/venv/*"
 vim.o.wildignore = "*/resources/*"

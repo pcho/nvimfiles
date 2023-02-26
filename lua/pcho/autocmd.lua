@@ -1,12 +1,6 @@
 local configs = "nvim_utils"
 vim.api.nvim_create_augroup(configs, { clear = true })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = configs,
-    pattern = "*",
-    command = "%s/\\s\\+$//e",
-})
-
 vim.api.nvim_create_autocmd({ "VimResized" }, {
     group = configs,
     callback = function()
@@ -14,9 +8,9 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
     end,
 })
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
     group = configs,
-    pattern = { "*.txt", "*.md" },
+    pattern = { "*.txt", "*.md", "text" },
     command = "setlocal spell | setlocal cc=80",
 })
 
