@@ -4,20 +4,10 @@ return {
     version = '*',
     config = function()
       require('toggleterm').setup({
-        open_mapping = '<leader>ft',
-        hide_numbers = true,
-        autochdir = false,
-        shade_filetypes = {},
-        shade_terminals = true,
-        shading_factor = '2',
-        start_in_insert = true,
-        insert_mappings = true,
+        open_mapping = '<leader>a',
         persist_size = false,
-        persist_mode = true,
         close_on_exit = false,
-        shell = vim.o.shell,
         direction = 'horizontal',
-        auto_scroll = true,
         float_opts = {
           border = 'rounded',
           width = math.floor(vim.o.columns * 0.8),
@@ -25,8 +15,6 @@ return {
           winblend = 5,
         },
         highlights = {
-          Normal = { link = 'Normal' },
-          NormalFloat = { link = 'NormalFloat' },
           FloatBorder = { link = 'TelescopeBorder' },
         },
         size = function(term)
@@ -49,15 +37,9 @@ return {
           end, opts)
         end,
       })
-
       vim.keymap.set(
         { 'n', 't' },
-        '<leader>vt',
-        [[<Cmd>execute 50+v:count "ToggleTerm direction=vertical"<CR>]]
-      )
-      vim.keymap.set(
-        { 'n', 't' },
-        '<leader>ht',
+        '<leader>k',
         [[<Cmd>execute 100+v:count "ToggleTerm direction=horizontal"<CR>]]
       )
     end,

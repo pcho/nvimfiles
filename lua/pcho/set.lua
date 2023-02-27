@@ -23,8 +23,6 @@ vim.o.completeopt = 'longest,menuone,noselect'
 
 vim.o.pumheight = 15
 
-vim.o.list = true
-
 vim.o.wildmode = 'list:longest,full'
 vim.opt.wildignore:append('*/venv/*')
 vim.opt.wildignore:append('*/resources/*')

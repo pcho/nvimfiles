@@ -1,6 +1,21 @@
 local configs = 'nvim_utils'
 vim.api.nvim_create_augroup(configs, { clear = true })
 
+local function open_nvim_tree(data)
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  if not directory then
+    return
+  end
+  vim.cmd.cd(data.file)
+  require('nvim-tree.api').tree.open()
+end
+
+vim.api.nvim_create_autocmd({ 'VimEnter' }, {
+  group = configs,
+  callback = open_nvim_tree,
+})
+
 vim.api.nvim_create_autocmd({ 'VimResized' }, {
   group = configs,
   callback = function()
