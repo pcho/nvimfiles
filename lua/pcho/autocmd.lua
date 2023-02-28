@@ -41,12 +41,22 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   command = 'EslintFixAll',
 })
 
+vim.api.nvim_create_autocmd({ 'WinLeave', 'InsertEnter' }, {
+  group = configs,
+  command = 'set nocursorline',
+})
+
+vim.api.nvim_create_autocmd({ 'WinEnter', 'InsertLeave' }, {
+  group = configs,
+  command = 'set cursorline',
+})
+
 vim.api.nvim_create_autocmd('FileType', {
   group = configs,
   pattern = { 'help', 'man' },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set('n', 'q', '<Cmd>quit<CR>', { silent = true, buffer = event.buf })
+    vim.keymap.set('n', 'q', '<Cmd>quit<cr>', { silent = true, buffer = event.buf })
   end,
 })
 
@@ -106,4 +116,4 @@ vim.api.nvim_create_user_command('CWKB', function()
   end
 end, { force = true })
 
-vim.keymap.set('n', 'Q', ':CWKB<CR>', { silent = true })
+vim.keymap.set('n', 'Q', '<Cmd>CWKB<cr>', { silent = true })

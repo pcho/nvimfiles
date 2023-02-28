@@ -27,10 +27,10 @@ return {
         on_create = function(term)
           local opts = { buffer = term.bufnr }
           vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-          vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-          vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-          vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-          vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+          vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<cr>]], opts)
+          vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<cr>]], opts)
+          vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<cr>]], opts)
+          vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<cr>]], opts)
           vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
           vim.keymap.set('t', '<C-q>', function()
             vim.cmd.quit({ bang = true })
@@ -40,7 +40,7 @@ return {
       vim.keymap.set(
         { 'n', 't' },
         '<leader>k',
-        [[<Cmd>execute 100+v:count "ToggleTerm direction=horizontal"<CR>]]
+        [[<Cmd>execute 100+v:count "ToggleTerm direction=horizontal"<cr>]]
       )
     end,
   },

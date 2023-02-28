@@ -93,6 +93,8 @@ return {
           'html-lsp',
           'css-lsp',
           'eslint-lsp',
+          'eslint_d',
+          'prettierd',
           'json-lsp',
           'css-lsp',
           'rustfmt',
@@ -161,13 +163,13 @@ return {
         auto_close = true,
       })
 
-      vim.keymap.set('n', '<leader>dd', '<Cmd>TroubleToggle document_diagnostics<CR>')
-      vim.keymap.set('n', '<leader>dl', '<Cmd>TroubleToggle loclist<CR>')
-      vim.keymap.set('n', '<leader>dq', '<Cmd>TroubleToggle quickfix<CR>')
-      vim.keymap.set('n', '<leader>dr', '<Cmd>TroubleToggle lsp_references<CR>')
-      vim.keymap.set('n', '<leader>dt', '<Cmd>TroubleToggle lsp_type_definitions<CR>')
-      vim.keymap.set('n', '<leader>dw', '<Cmd>TroubleToggle lsp_implementations<CR>')
-      vim.keymap.set('n', '<leader>q', '<Cmd>TroubleToggle workspace_diagnostics<CR>')
+      vim.keymap.set('n', '<leader>dd', '<Cmd>TroubleToggle document_diagnostics<cr>')
+      vim.keymap.set('n', '<leader>dl', '<Cmd>TroubleToggle loclist<cr>')
+      vim.keymap.set('n', '<leader>dq', '<Cmd>TroubleToggle quickfix<cr>')
+      vim.keymap.set('n', '<leader>dr', '<Cmd>TroubleToggle lsp_references<cr>')
+      vim.keymap.set('n', '<leader>dt', '<Cmd>TroubleToggle lsp_type_definitions<cr>')
+      vim.keymap.set('n', '<leader>dw', '<Cmd>TroubleToggle lsp_implementations<cr>')
+      vim.keymap.set('n', '<leader>q', '<Cmd>TroubleToggle workspace_diagnostics<cr>')
     end,
   },
 }

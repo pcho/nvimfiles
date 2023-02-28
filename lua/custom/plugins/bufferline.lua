@@ -28,7 +28,7 @@ return {
   },
   config = function(_, opts)
     require('bufferline').setup(opts)
-    vim.keymap.set('n', 'H', '<Cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true })
-    vim.keymap.set('n', 'L', '<Cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true })
+    vim.keymap.set('n', 'H', '<Cmd>BufferLineCyclePrev<cr>', { noremap = true, silent = true })
+    vim.keymap.set('n', 'L', '<Cmd>BufferLineCycleNext<cr>', { noremap = true, silent = true })
   end,
 }
