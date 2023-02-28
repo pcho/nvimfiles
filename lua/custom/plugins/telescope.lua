@@ -22,10 +22,8 @@ return {
             },
           },
           file_ignore_patterns = {
-            'node_modules',
             'zsh_sessions',
             'zcompcache/',
-            'next',
           },
           mappings = {
             i = {

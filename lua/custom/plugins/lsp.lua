@@ -127,8 +127,6 @@ return {
           builtins.formatting.shfmt.with({
             extra_args = { '-i', '2', '-ci' },
           }),
-          builtins.formatting.stylua,
-          builtins.formatting.rustfmt,
           builtins.formatting.shellharden,
           builtins.formatting.beautysh.with({
             disabled_filetypes = { 'sh', 'bash' },
@@ -137,17 +135,10 @@ return {
           builtins.formatting.trim_whitespace,
           builtins.formatting.trim_newlines,
           builtins.diagnostics.markdownlint,
-          builtins.diagnostics.eslint_d,
-          builtins.diagnostics.shellcheck,
-          builtins.code_actions.eslint_d,
           builtins.code_actions.gitsigns,
         },
         on_attach = function(client, bufnr)
           if client.supports_method('textDocument/formatting') then
-            vim.keymap.set('n', '<Leader>ff', function()
-              vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-            end, { buffer = bufnr, desc = '[lsp] format' })
-
             vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
             vim.api.nvim_create_autocmd(event, {
               buffer = bufnr,
@@ -157,12 +148,6 @@ return {
               end,
               desc = '[lsp] format on save',
             })
-          end
-
-          if client.supports_method('textDocument/rangeFormatting') then
-            vim.keymap.set('x', '<Leader>ff', function()
-              vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-            end, { buffer = bufnr, desc = '[lsp] format' })
           end
         end,
       })
