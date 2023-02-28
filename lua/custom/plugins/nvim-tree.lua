@@ -48,6 +48,7 @@ return {
         vim.keymap.set('n', 'Y', api.fs.copy.relative_path, opts('Copy Relative Path'))
         vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
         vim.keymap.set('n', 'l', api.node.open.edit, opts('Expand'))
+        vim.keymap.set('n', 'h', api.node.open.edit, opts('Close'))
         vim.keymap.set('n', 's', api.node.open.horizontal, opts('Open: Horizontal Split'))
         vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
         vim.keymap.set('n', 't', api.node.open.tab, opts('Open: New Tab'))
