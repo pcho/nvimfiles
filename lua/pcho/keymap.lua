@@ -10,7 +10,7 @@ vim.keymap.set('n', '<leader>o', '<Cmd>split<cr>')
 
 vim.keymap.set('n', '<leader>W', '<Cmd>set wrap!<cr>')
 
-vim.keymap.set('n', '<leader>x', '<Cmd>let @/ = ""<cr>', { silent = true })
+vim.keymap.set('n', '<leader>x', '<Cmd>let @/ = ""<cr>')
 
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
