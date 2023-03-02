@@ -100,6 +100,8 @@ return {
           'rustfmt',
           'yamlfmt',
           'stylua',
+          'shfmt',
+          'shellharden',
           'shellcheck',
           'rust-analyzer',
         },

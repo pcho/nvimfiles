@@ -4,7 +4,7 @@ return {
     version = '*',
     config = function()
       require('toggleterm').setup({
-        open_mapping = '<leader>a',
+        open_mapping = '<leader>ad',
         persist_size = false,
         close_on_exit = false,
         direction = 'horizontal',
