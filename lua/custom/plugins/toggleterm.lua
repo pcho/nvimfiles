@@ -4,7 +4,7 @@ return {
     version = '*',
     config = function()
       require('toggleterm').setup({
-        open_mapping = '<leader>ad',
+        open_mapping = '<F1>',
         insert_mappings = false,
         persist_size = false,
         close_on_exit = false,
@@ -40,7 +40,7 @@ return {
       })
       vim.keymap.set(
         { 'n', 't' },
-        '<leader>k',
+        '<F2>',
         [[<Cmd>execute 100+v:count "ToggleTerm direction=horizontal"<cr>]]
       )
     end,
