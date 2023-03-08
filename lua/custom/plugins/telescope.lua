@@ -1,10 +1,20 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
+    lazy = true,
+    keys = {
+      { '<c-p>',     '<Cmd>Telescope find_files<cr>' },
+      { '<leader>d', '<Cmd>Telescope oldfiles<cr>' },
+      { '<leader>m', '<Cmd>Telescope man_pages<cr>' },
+      { '<leader>b', '<Cmd>Telescope buffers<cr>' },
+      { '<leader>h', '<Cmd>Telescope help_tags<cr>' },
+      { '<leader>g', '<Cmd>Telescope live_grep<cr>' },
+    },
     dependencies = {
       'nvim-lua/plenary.nvim',
       {
         'nvim-telescope/telescope-ui-select.nvim',
+        lazy = true,
         config = function()
           require('telescope').load_extension('ui-select')
         end,
@@ -27,7 +37,7 @@ return {
           },
           mappings = {
             i = {
-              ['<esc>'] = require('telescope.actions').close,
+                  ['<esc>'] = require('telescope.actions').close,
             },
           },
         },
@@ -46,22 +56,13 @@ return {
           },
         },
       })
-      local builtin = require('telescope.builtin')
-
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-
-      vim.keymap.set('n', '<c-p>', builtin.find_files, {})
-
-      vim.keymap.set('n', '<leader>d', builtin.oldfiles, {})
-      vim.keymap.set('n', '<leader>m', builtin.man_pages, {})
-      vim.keymap.set('n', '<leader>b', builtin.buffers, {})
-      vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
-      vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
     end,
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
+    lazy = true,
     build = 'make',
     cond = function()
       return vim.fn.executable('make') == 1

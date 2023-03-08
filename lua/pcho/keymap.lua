@@ -1,4 +1,5 @@
 vim.keymap.set('n', '<leader>w', '<Cmd>write!<cr>')
+vim.keymap.set('n', '<leader>ll', '<Cmd>Lazy<cr>')
 
 vim.keymap.set('n', '<leader>vr', '<Cmd>edit $MYVIMRC<cr>')
 vim.keymap.set('n', '<leader>vv', '<Cmd>lcd %:p:h<cr>')

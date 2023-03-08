@@ -1,7 +1,9 @@
 return {
   'akinsho/bufferline.nvim',
+  lazy = true,
+  event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
   version = 'v3.*',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
   opts = {
     options = {
       diagnostics = 'nvim_lsp',

@@ -1,8 +1,19 @@
 return {
   'nvim-tree/nvim-tree.lua',
+  lazy = true,
+  cmd = {
+    "NvimTreeToggle",
+    "NvimTreeOpen",
+    "NvimTreeFindFile",
+    "NvimTreeFindFileToggle",
+    "NvimTreeRefresh",
+  },
+  keys = {
+    { '<leader>e', '<Cmd>NvimTreeToggle<cr>' },
+  },
   version = 'nightly',
   dependencies = {
-    'nvim-tree/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons', lazy = true,
   },
   config = function()
     require('nvim-tree').setup({
@@ -94,6 +105,5 @@ return {
         },
       },
     })
-    vim.keymap.set('n', '<leader>e', vim.cmd.NvimTreeToggle, { silent = true })
   end,
 }

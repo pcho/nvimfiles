@@ -1,13 +1,14 @@
 return {
-  'windwp/nvim-ts-autotag',
-  'JoosepAlviste/nvim-ts-context-commentstring',
-  { 'windwp/nvim-autopairs', opts = {} },
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = { 'BufReadPost', 'BufNewFile' },
+    lazy = true,
+    event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
+      { 'nvim-treesitter/nvim-treesitter-textobjects', lazy = true, },
+      { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true, },
+      { 'windwp/nvim-ts-autotag',                      lazy = true, },
+      { 'windwp/nvim-autopairs',                       opts = {},   lazy = true, },
     },
     opts = {
       context_commentstring = {

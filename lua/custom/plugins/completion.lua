@@ -1,5 +1,7 @@
 return {
   'hrsh7th/nvim-cmp',
+  lazy = true,
+  event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = {
     'onsails/lspkind.nvim',
     'hrsh7th/cmp-path',

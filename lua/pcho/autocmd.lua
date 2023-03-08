@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd({ 'WinEnter', 'InsertLeave' }, {
 
 vim.api.nvim_create_autocmd('FileType', {
   group = configs,
-  pattern = { 'help', 'man' },
+  pattern = { 'help', 'man', 'fugitive' },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', '<Cmd>quit<cr>', { silent = true, buffer = event.buf })

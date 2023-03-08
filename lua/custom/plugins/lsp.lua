@@ -1,6 +1,8 @@
 return {
   {
     'neovim/nvim-lspconfig',
+    lazy = true,
+    event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
@@ -115,6 +117,8 @@ return {
   },
   {
     'jose-elias-alvarez/null-ls.nvim',
+    lazy = true,
+    event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
@@ -159,19 +163,21 @@ return {
   },
   {
     'folke/trouble.nvim',
-    dependencies = 'nvim-tree/nvim-web-devicons',
+    lazy = true,
+    keys = {
+      { '<leader>dd', '<Cmd>TroubleToggle document_diagnostics<cr>' },
+      { '<leader>dl', '<Cmd>TroubleToggle loclist<cr>' },
+      { '<leader>dq', '<Cmd>TroubleToggle quickfix<cr>' },
+      { '<leader>dr', '<Cmd>TroubleToggle lsp_references<cr>' },
+      { '<leader>dt', '<Cmd>TroubleToggle lsp_type_definitions<cr>' },
+      { '<leader>dw', '<Cmd>TroubleToggle lsp_implementations<cr>' },
+      { '<leader>q',  '<Cmd>TroubleToggle workspace_diagnostics<cr>' },
+    },
+    dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true, },
     config = function()
       require('trouble').setup({
         auto_close = true,
       })
-
-      vim.keymap.set('n', '<leader>dd', '<Cmd>TroubleToggle document_diagnostics<cr>')
-      vim.keymap.set('n', '<leader>dl', '<Cmd>TroubleToggle loclist<cr>')
-      vim.keymap.set('n', '<leader>dq', '<Cmd>TroubleToggle quickfix<cr>')
-      vim.keymap.set('n', '<leader>dr', '<Cmd>TroubleToggle lsp_references<cr>')
-      vim.keymap.set('n', '<leader>dt', '<Cmd>TroubleToggle lsp_type_definitions<cr>')
-      vim.keymap.set('n', '<leader>dw', '<Cmd>TroubleToggle lsp_implementations<cr>')
-      vim.keymap.set('n', '<leader>q', '<Cmd>TroubleToggle workspace_diagnostics<cr>')
     end,
   },
 }

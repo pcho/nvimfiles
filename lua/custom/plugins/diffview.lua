@@ -1,5 +1,10 @@
 return {
   'sindrets/diffview.nvim',
+  lazy = true,
+  keys = {
+    { '<leader>df', '<Cmd>DiffviewOpen<cr>' },
+    { '<leader>dc', '<Cmd>DiffviewClose<cr>' },
+  },
   dependencies = 'nvim-lua/plenary.nvim',
   config = function()
     require('diffview').setup({
@@ -10,7 +15,5 @@ return {
         },
       },
     })
-    vim.keymap.set('n', '<leader>df', '<Cmd>DiffviewOpen<cr>', {})
-    vim.keymap.set('n', '<leader>dc', '<Cmd>DiffviewClose<cr>', {})
   end,
 }

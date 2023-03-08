@@ -1,5 +1,6 @@
 return {
   'christoomey/vim-tmux-navigator',
+  event = 'VeryLazy',
   config = function()
     vim.keymap.set('n', '<c-j>', '<c-w><c-j>')
     vim.keymap.set('n', '<c-k>', '<c-w><c-k>')
