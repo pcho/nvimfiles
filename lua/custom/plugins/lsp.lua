@@ -129,7 +129,7 @@ return {
       null_ls.setup({
         sources = {
           builtins.formatting.shfmt.with({
-            extra_args = { '-i', '2', '-ci' },
+            extra_args = { '-i', '2', '-ci', '-bn', '-sr' },
           }),
           builtins.formatting.shellharden,
           builtins.formatting.beautysh.with({
