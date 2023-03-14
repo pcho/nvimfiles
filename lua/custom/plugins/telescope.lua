@@ -34,6 +34,8 @@ return {
           file_ignore_patterns = {
             'zsh_sessions',
             'zcompcache/',
+            'target/',
+            'Cargo.lock',
           },
           mappings = {
             i = {

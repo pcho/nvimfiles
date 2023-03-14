@@ -1,13 +1,6 @@
 return {
   'nvim-tree/nvim-tree.lua',
-  lazy = true,
-  cmd = {
-    "NvimTreeToggle",
-    "NvimTreeOpen",
-    "NvimTreeFindFile",
-    "NvimTreeFindFileToggle",
-    "NvimTreeRefresh",
-  },
+  event = "VeryLazy",
   keys = {
     { '<leader>e', '<Cmd>NvimTreeToggle<cr>' },
   },
